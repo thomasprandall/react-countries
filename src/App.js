@@ -54,12 +54,9 @@ function App() {
         
       </div>
       <div style={{display: "flex", flexFlow: "row wrap", justifyContent: "space-evenly"}}>
-        {region.length === 0 && <h3>Select a Region to begin.</h3>}
         {countries.length > 0 && 
-          countries.filter(
-              (country) => {
-                return (country.name.common.toLowerCase().includes(searchString.toLowerCase()) && country.region === region);
-              })
+          countries.filter((country) => region.length === 0 || country.region === region)
+            .filter((country) => searchString.length === 0 || country.name.common.toLowerCase().includes(searchString.toLowerCase()))
             .map((country) => {
               return(
                 <CountryBlock country={country} key={country.name.official} />
