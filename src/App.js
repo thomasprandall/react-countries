@@ -24,7 +24,7 @@ function App() {
         .then(countryData => {
           let reducedCountries =[];
           
-          countryData.map((country) => {
+          countryData.forEach((country) => {
             
             reducedCountries.push({
               name: country.name.common,
@@ -56,14 +56,12 @@ function App() {
 
   return (
     <div className="App" style={{maxWidth: "120ch", margin: "auto", padding: '1em', minHeight: "100vh"}}>
+      <div>
+        <h1>Where in the World?</h1>
+      </div>
       <div style={{display: "flex", flexFlow: "row wrap", justifyContent: "space-between"}}>
-        <div>
-          <h1>All Countries: {countries.length}</h1><br />
-          <RegionDropdown regions={regionData} updateRegion={setRegion} /><br />
-        </div>
-        <div>
           <SearchField search={searchString} updateSearch={setSearchString} />
-        </div>
+          <RegionDropdown regions={regionData} updateRegion={setRegion} /><br />
       </div>
       <div>
         

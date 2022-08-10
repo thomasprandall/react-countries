@@ -15,5 +15,17 @@ code {
 #root {
   background-color: hsl(207, 26%, 17%);
   color: hsl(0, 0%, 100%);
-  font-size: small;
+  font-size: 14px;
+}
+
+input{
+  padding: 1ch;
+  min-width: 35ch;
+}
+select{
+  padding:1ch;
+}
+input,select{
+  border:none;
+  box-shadow: 1ch 1ch 1em -1ch black;
 }
