@@ -1,4 +1,4 @@
-import {useState, useEffect, useCallback} from 'react';
+import {useState, useEffect} from 'react';
 
 import './App.css';
 
@@ -22,8 +22,23 @@ function App() {
       fetch(apiBase + "all")
         .then(response => response.json())
         .then(countryData => {
-          setCountries(countryData);
-          localStorage.setItem("countries", JSON.stringify(countryData));
+          let reducedCountries =[];
+          
+          countryData.map((country) => {
+            
+            reducedCountries.push({
+              name: country.name.common,
+              region: country.region,
+              subregion: country.subregion,
+              flag: country.flags.png,
+              population: country.population,
+              capital: country.capital ? country.capital.join(', '):'N/A'
+            });
+
+          });
+          
+          setCountries(reducedCountries);
+          localStorage.setItem("countries", JSON.stringify(reducedCountries));
           localStorage.setItem("countriesExpire", new Date().setHours(23));
         });
     } else {
@@ -56,10 +71,10 @@ function App() {
       <div style={{display: "flex", flexFlow: "row wrap", justifyContent: "space-evenly"}}>
         {countries.length > 0 && 
           countries.filter((country) => region.length === 0 || country.region === region)
-            .filter((country) => searchString.length === 0 || country.name.common.toLowerCase().includes(searchString.toLowerCase()))
+            .filter((country) => searchString.length === 0 || country.name.toLowerCase().includes(searchString.toLowerCase()))
             .map((country) => {
               return(
-                <CountryBlock country={country} key={country.name.official} />
+                <CountryBlock country={country} key={country.name} />
               )
             })
       }
