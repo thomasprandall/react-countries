@@ -32,7 +32,7 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://tr-rc.netlify.app/)
+- Solution URL: [https://tr-rc.netlify.app/](https://tr-rc.netlify.app/)
 
 ## My process
 
